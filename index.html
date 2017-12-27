@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+		<title>Freetestcoin Calculator</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
+	</head>
+	<body>
+		
+		<div class="container">
+			<div class="scrollTable">
+				<table class="table my-3">
+				  <thead class="thead-dark">
+				    <tr>
+				      <th scope="col" class="">Fecha</th>
+				      <th scope="col">Cantidad inicial</th>
+				      <th scope="col">Propósito</th>
+				      <th scope="col">Perdidas máximas</th>
+				      <th scope="col">Índice</th>
+				    </tr>
+				  </thead>
+				  <tbody id="tbody">
+				    <!--<tr>
+				      <td scope="row">25/12/2017</td>
+				      <td>500</td>
+				      <td>650</td>
+				      <td>350</td>
+				      <td>1.3</td>
+				    </tr>
+				    <tr>
+				      <td scope="row">26/12/2017</td>
+				      <td>650</td>
+				      <td>845</td>
+				      <td>455</td>
+				      <td>1.3</td>
+				    </tr>-->
+				    <tr>
+				      <td scope="row" class="bg-dark text-white">26/12/2017</td>
+				      <td id="defaultAmount">0.00000100</td>
+				      <td id="defaultGoal">0.00000150</td>
+				      <td id="defaultLoss">0.00000050</td>
+				      <td id="setIndex">1.5</td>
+				    </tr>
+				  </tbody>
+				</table>
+			</div>
+
+			<div class="row justify-content-center text-center my-3">
+				<div class="col-4 col-md-3 col-lg-2 py-2 text-white dark-button-style"><b>Cantidad inicial</b></div>
+				<div class="col-4 col-md-3 col-lg-2 py-2 text-white dark-button-style"><b>Índice</b></div>
+			</div>
+			<div class="row justify-content-center text-center">
+				<div class="col-4 col-md-3 col-lg-2 py-2 border-bottom-light"><input type="number" placeholder="0.00005000" min="0" class="no-input-style text-center" id="startingAmount"></div>
+				<div class="col-4 col-md-3 col-lg-2 py-2 border-bottom-light"><input type="number" placeholder="1.3" min="1" class="no-input-style text-center" id="startingIndex"></div>
+			</div>
+
+			<div class="row justify-content-center my-3">
+				<div class="col-4 col-md-3 col-lg-2 py-2 text-center text-white dark-button-press-style cursor-hand" onclick="start();">
+					<b>Enviar</b>
+				</div>
+			</div>
+		</div>
+		
+
+
+
+		<script>
+			function getDate(){
+				var dateObject = new Date();
+				var day = dateObject.getUTCDate();
+				var falseMonth = dateObject.getUTCMonth();
+				var month = falseMonth + 1;
+				var year = dateObject.getUTCFullYear();
+
+				var date = day + "/" + month + "/" + year;
+				return date;
+			}
+
+			function getIndex(){
+				var selectedIndex = document.getElementById("startingIndex").value;
+				var selectedIndexFloat = parseFloat(selectedIndex);
+				var defaultIndex = document.getElementById("setIndex").innerHTML;
+				if(selectedIndex == ''){
+					if(defaultIndex < 1){
+					}
+					else {
+						return defaultIndex;
+					}
+				}
+				else {
+					if (selectedIndexFloat < 1){
+					}
+					else {
+						return selectedIndexFloat;
+					}
+				}
+			}
+
+			function getStartingAmount(){
+				var defaultStartingAmount = document.getElementById("defaultGoal").innerHTML;
+				var defaultAmountFloat = parseFloat(defaultStartingAmount).toFixed(8);
+				var input = document.getElementById("startingAmount").value;
+				var inputFloat = parseFloat(input).toFixed(8); 
+
+				if (input.trim() != ''){
+					return inputFloat;
+				}
+				else {
+					return defaultAmountFloat;
+				}
+			}
+
+			function goalCalc(){
+				var defAmountFloat = getStartingAmount();
+				var indexValueFloat = getIndex();
+				var goalAmount = parseFloat(defAmountFloat * indexValueFloat);
+				goalAmount = goalAmount.toFixed(8);
+				return goalAmount;
+			}
+
+			function getLossAmount(){
+				var startValue = getStartingAmount();
+				var multipliedValue = goalCalc();
+				var finalValue = parseFloat(startValue - (multipliedValue - startValue)).toFixed(8);
+				return finalValue;
+
+			}
+
+			function createTr(){
+					var trElement = document.createElement("tr");
+					var tdElementDate = document.createElement("td");
+					var tdElementStartingAmount = document.createElement("td");
+					var tdElementGoal = document.createElement("td");
+					var tdElementMaxLoss = document.createElement("td");
+					var tdElementIndex = document.createElement("td");
+					var tdDate = document.createTextNode(getDate());
+					var tdStartingAmount = document.createTextNode(getStartingAmount());
+					var tdGoal = document.createTextNode(goalCalc());
+					var tdMaxLoss = document.createTextNode(getLossAmount());
+					var tdIndex = document.createTextNode(getIndex());
+					document.getElementById("defaultAmount").removeAttribute("id");
+					document.getElementById("defaultGoal").removeAttribute("id");
+					document.getElementById("setIndex").removeAttribute("id");
+					tdElementDate.appendChild(tdDate);
+					tdElementStartingAmount.appendChild(tdStartingAmount);
+					tdElementGoal.appendChild(tdGoal);
+					tdElementMaxLoss.appendChild(tdMaxLoss);
+					tdElementIndex.appendChild(tdIndex);
+					tdElementDate.setAttribute("class", "bg-dark text-white");
+					tdElementStartingAmount.setAttribute("id", "defaultAmount");
+					tdElementGoal.setAttribute("id", "defaultGoal");
+					tdElementIndex.setAttribute("id", "setIndex");
+					trElement.appendChild(tdElementDate);
+					trElement.appendChild(tdElementStartingAmount);
+					trElement.appendChild(tdElementGoal);
+					trElement.appendChild(tdElementMaxLoss);
+					trElement.appendChild(tdElementIndex);
+					document.getElementById("tbody").appendChild(trElement);
+					/*var trElement2 = trElement.cloneNode(true);
+					document.getElementById("tbody").appendChild(trElement2);*/
+			}
+
+			function detectValue(){
+				var indexSelected = document.getElementById("startingIndex").value;
+				var indexDefault = document.getElementById("setIndex").innerHTML;
+
+				if (indexSelected == ''){
+					if (indexDefault != ''){
+						if (indexDefault < 1){
+							alert("Ingresa un index mayor o igual a 1.");
+						} 
+						else {
+							createTr();
+						}
+					}
+				}
+				else {
+					if (indexSelected < 1){
+						alert("Ingresa un index mayor o igual a 1.");
+					}
+					else {
+						createTr();
+					}
+				}
+			}
+
+			function start(){
+				var elementExists = document.getElementById("defaultAmount");
+				var strtAmount = document.getElementById("startingAmount").value;
+				var strtIndex = document.getElementById("startingIndex").value;
+
+				if (elementExists == null){
+					if (strtAmount == ''){
+						alert("Introduce una cantidad inicial.");
+					}
+					else {
+						if (strtIndex == ''){
+							alert("Introduce un índice.");
+						}
+						else {
+							detectValue();
+						}
+					}
+				}
+				else {
+					detectValue();
+				}
+			}
+		</script>
+
+ 		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    	<script src="js/bootstrap.min.js"></script>
+  	</body>
+</html>
