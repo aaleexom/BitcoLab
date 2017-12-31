@@ -7,10 +7,27 @@
 		<link rel="stylesheet" href="css/bootstrap.min.css">
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
+		<script src="js/jquery-3.2.1.min.js"></script>
+		<script type="text/javascript">
+			$(window).on('scroll', function() {
+				if($(window).scrollTop()) {
+					$('#navbarId').addClass('dark-nav-bg text-white');
+				}
+				else {
+					$('#navbarId').removeClass('dark-nav-bg text-white');
+				}
+			})
+		</script>
 	</head>
 	<body>
+		<div class="fixed-top text-center" id="navbarId">
+		  	<div class="row pvFull">
+		  		<a class="col-6 py-3 onHoverPrimary" href="index.html">Calculadora de días</a>
+		  		<a class="col-6 py-3 onHoverPrimary" href="test.html">Probar scripts</a>
+		  	</div>
+		</div>
 		
-		<div class="container">
+		<div class="container my-5">
 			<div class="scrollTable">
 				<table class="table my-3">
 				  <thead class="thead-dark">
