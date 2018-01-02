@@ -91,7 +91,7 @@ function roll(){
 		var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"result\"><b class=\"text-danger\">Lose</b></td></tr>";
 		$("#btcCounter").text(removeCoins);
 	}
-	$("#tbody").append(text);
+	$("#tbody").prepend(text);
 }
 
 function autoRoll(){
@@ -175,7 +175,7 @@ $(document).ready(function(){
 			var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"result\"><b class=\"text-danger\">Lose</b></td></tr>";
 			$("#btcCounter").text(removeCoins);
 		}
-		$("#tbody").append(text);
+		$("#tbody").prepend(text);
 	});
 
 	$("#btnLo").click(function(){
@@ -208,7 +208,7 @@ $(document).ready(function(){
 			var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"result\"><b class=\"text-danger\">Lose</b></td></tr>";
 			$("#btcCounter").text(removeCoins);
 		}
-		$("#tbody").append(text);
+		$("#tbody").prepend(text);
 	});
 
 	$("#autoRoll").click(function(){
@@ -334,5 +334,92 @@ $(document).ready(function(){
 			$("#autoLo").addClass("bg-primary-selected");
 			betTo = "Lo";
 		}
+	});
+
+	$("#x2").click(function(){
+		var pocketBTC = $("#btcCounter").text();
+		var pocketBTCFix = parseFloat(pocketBTC).toFixed(8);
+		var inputBTC = $("#betAmount").val();
+		var inputBTCFix = parseFloat(inputBTC);
+		var x2BTC = inputBTCFix * 2;
+		var x2BTCFix = parseFloat(x2BTC).toFixed(8);
+		
+		if (pocketBTCFix >= x2BTCFix){
+			$("#betAmount").val(x2BTCFix);
+
+			payoutValue = $("#payout").val();
+			payoutValueFix = parseFloat(payoutValue).toFixed(2);
+
+			winProfitValue = (x2BTCFix * payoutValueFix) - x2BTCFix;
+			winProfitValueFix = parseFloat(winProfitValue).toFixed(8);
+			$("#winProfit").text(winProfitValueFix);
+		}
+		else {
+			$("#betAmount").val(pocketBTCFix);
+			$("#winProfit").text(pocketBTCFix);
+		}
+	});
+
+	$("#d2").click(function(){
+		var pocketBTC = $("#btcCounter").text();
+		var pocketBTCFix = parseFloat(pocketBTC).toFixed(8);
+		var inputBTC = $("#betAmount").val();
+		var inputBTCFix = parseFloat(inputBTC);
+		var x2BTC = inputBTCFix / 2;
+		var x2BTCFix = parseFloat(x2BTC).toFixed(8);
+		
+		if (pocketBTCFix >= x2BTCFix){
+			$("#betAmount").val(x2BTCFix);
+
+			payoutValue = $("#payout").val();
+			payoutValueFix = parseFloat(payoutValue).toFixed(2);
+
+			winProfitValue = (x2BTCFix * payoutValueFix) - x2BTCFix;
+			winProfitValueFix = parseFloat(winProfitValue).toFixed(8);
+			$("#winProfit").text(winProfitValueFix);
+		}
+		else {
+			$("#betAmount").val(pocketBTCFix);
+			$("#winProfit").text(pocketBTCFix);
+		}
+	});
+
+	$("#minCoins").click(function(){
+		var pocketBTC = $("#btcCounter").text();
+		var pocketBTCFix = parseFloat(pocketBTC).toFixed(8);
+		var inputBTC = $("#betAmount").val();
+		var inputBTCFix = parseFloat(inputBTC);
+		var minValue = parseFloat(0.00000001).toFixed(8);
+
+		if (pocketBTCFix >= 0.00000001){
+			$("#betAmount").val(minValue);
+
+			payoutValue = $("#payout").val();
+			payoutValueFix = parseFloat(payoutValue).toFixed(2);
+
+			winProfitValue = (minValue * payoutValueFix) - minValue;
+			winProfitValueFix = parseFloat(winProfitValue).toFixed(8);
+			$("#winProfit").text(winProfitValueFix);
+		} else {
+			$("#betAmount").val(parseFloat(0.00000000).toFixed(8));
+			$("#winProfit").text(parseFloat(0.00000000).toFixed(8));
+		}
+	});
+
+	$("#maxCoins").click(function(){
+		var pocketBTC = $("#btcCounter").text();
+		var pocketBTCFix = parseFloat(pocketBTC).toFixed(8);
+		var inputBTC = $("#betAmount").val();
+		var inputBTCFix = parseFloat(inputBTC);
+		var maxValue = pocketBTCFix;
+
+		$("#betAmount").val(maxValue);
+		
+		payoutValue = $("#payout").val();
+		payoutValueFix = parseFloat(payoutValue).toFixed(2);
+
+		winProfitValue = (maxValue * payoutValueFix) - maxValue;
+		winProfitValueFix = parseFloat(winProfitValue).toFixed(8);
+		$("#winProfit").text(winProfitValueFix);
 	});
 });
