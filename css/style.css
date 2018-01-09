@@ -26,6 +26,10 @@ input[type=number]::-webkit-outer-spin-button {
 	height: 100%;
 }
 
+.phFull {
+	width: 100%;
+}
+
 .relative {
 	position: relative;
 }
@@ -157,4 +161,37 @@ input[type=number]::-webkit-outer-spin-button {
 .leftBorderRadius {
     border-top-left-radius: 999px;
     border-bottom-left-radius: 999px;
+}
+
+.blueUser {
+	color: #007BFF;
+	transition: .3s ease;
+}
+
+.blueUser:hover {
+	color: #003D7F;
+}
+
+.leftRadius {
+	border-top-left-radius: .25rem;
+	border-bottom-left-radius: .25rem;
+}
+
+.rightRadius {
+	border-top-right-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+.topRadius {
+	border-top-left-radius: .25rem;
+	border-top-right-radius: .25rem;
+}
+
+.botRadius {
+	border-bottom-left-radius: .25rem;
+	border-bottom-right-radius: .25rem;
+}
+
+.remRadius {
+	border-radius: .25rem;
 }

@@ -147,13 +147,13 @@ function roll(){
 	if (trueOrFalse == true) {
 		$("#btcCounter").text(addCoins);
 		afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-		$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center\">" + betCount + "</span>");
+		$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder leftRadius\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center rightRadius\">" + betCount + "</span>");
 		var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-success\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 	}
 	else {
 		$("#btcCounter").text(removeCoins);
 		afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-		$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center\">" + betCount + "</span>");
+		$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder leftRadius\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center rightRadius\">" + betCount + "</span>");
 		var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-danger\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 	}
 	$("#tbody").prepend(text);
@@ -378,11 +378,11 @@ function removeCoins(){
 function switchAuto(){
 	if (startedAutoRoll == false){
 		startedAutoRoll = true;
-		$("#start").text("Stop");
+		$("#start").html("<i class=\"fas fa-pause fa-2x\">");
 	}
 	else {
 		startedAutoRoll = false;
-		$("#start").text("Start");
+		$("#start").html("<i class=\"fas fa-play fa-2x\">");
 		perdidasNecesarias = 0;
 	}
 	return startedAutoRoll;
@@ -560,13 +560,13 @@ $(document).ready(function(){
 			if (trueOrFalse == true) {
 				$("#btcCounter").text(addCoins);
 				afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center\">" + betCount + "</span>");
+				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder leftRadius\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center rightRadius\">" + betCount + "</span>");
 				var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-success\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 			}
 			else {
 				$("#btcCounter").text(removeCoins);
 				afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center\">" + betCount + "</span>");
+				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder leftRadius\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center rightRadius\">" + betCount + "</span>");
 				var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-danger\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 			}
 			$("#tbody").prepend(text);
@@ -617,13 +617,13 @@ $(document).ready(function(){
 			if (trueOrFalse == true) {
 				$("#btcCounter").text(addCoins);
 				afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center\">" + betCount + "</span>");
+				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-success bgSuccessBorder leftRadius\">¡Has ganado!</span><span class=\"px-3 py-1 bgSuccessBorder text-center rightRadius\">" + betCount + "</span>");
 				var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-success\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 			}
 			else {
 				$("#btcCounter").text(removeCoins);
 				afterAmount = parseFloat($("#btcCounter").text()).toFixed(8);
-				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center\">" + betCount + "</span>");
+				$("#msgTrueFalse").html("<span class=\"py-1 px-5 bg-danger bgDangerBorder leftRadius\">Has perdido...</span><span class=\"px-3 py-1 bgDangerBorder text-center rightRadius\">" + betCount + "</span>");
 				var text = "<tr><td scope=\"row\" class=\"bg-dark text-white\" id=\"bet\">" + betVar + "</td><td class=\"roll\">" + x + "</td><td class=\"winLose\"><b class=\"text-danger\">" + plusMinus + winLoseAmount + "</b></td><td class=\"previousAmount\">" + prevAmount + "</td><td class=\"laterAmount\">" + afterAmount + "</td></tr>";
 			}
 			$("#tbody").prepend(text);

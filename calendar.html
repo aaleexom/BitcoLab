@@ -8,6 +8,7 @@
 		<link rel="stylesheet" href="css/style.css">
 		<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
 		<script src="js/jquery-3.2.1.min.js"></script>
+		<script defer src="js/fontawesome-all.js"></script>
 		<script type="text/javascript">
 			$(window).on('scroll', function() {
 				if($(window).scrollTop()) {
@@ -19,6 +20,9 @@
 			})
 		</script>
 	</head>
+
+
+
 	<body>
 		<div class="fixed-top text-center" id="navbarId">
 		  	<div class="row pvFull">
@@ -27,60 +31,162 @@
 		  	</div>
 		</div>
 		
-		<div class="container my-5">
-			<div class="scrollTable">
-				<table class="table my-3">
-				  <thead class="thead-dark">
-				    <tr>
-				      <th scope="col" class="">Fecha</th>
-				      <th scope="col">Cantidad inicial</th>
-				      <th scope="col">Propósito</th>
-				      <th scope="col">Perdidas máximas</th>
-				      <th scope="col">Índice</th>
-				    </tr>
-				  </thead>
-				  <tbody id="tbody">
-				    <!--<tr>
-				      <td scope="row">25/12/2017</td>
-				      <td>500</td>
-				      <td>650</td>
-				      <td>350</td>
-				      <td>1.3</td>
-				    </tr>
-				    <tr>
-				      <td scope="row">26/12/2017</td>
-				      <td>650</td>
-				      <td>845</td>
-				      <td>455</td>
-				      <td>1.3</td>
-				    </tr>-->
-				    <tr>
-				      <td scope="row" class="bg-dark text-white">26/12/2017</td>
-				      <td id="defaultAmount">0.00000100</td>
-				      <td id="defaultGoal">0.00000150</td>
-				      <td id="defaultLoss">0.00000050</td>
-				      <td id="setIndex">1.5</td>
-				    </tr>
-				  </tbody>
+		<div class="container">
+
+			<div id="accordion" role="tablist" class="my-5">
+			  <div class="card">
+			    <div class="card-header" role="tab" id="headingOne">
+			      <h5 class="mb-0 text-center">
+			        <a data-toggle="collapse" href="#collapseOne" role="button" aria-expanded="true" aria-controls="collapseOne" >
+			          Añadir objetivo <i class="far fa-calendar-plus"></i>
+			        </a>
+			      </h5>
+			    </div>
+
+			    <div id="collapseOne" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#accordion">
+			      <div class="card-body">
+
+			        <form>
+					  <div class="form-group row justify-content-center">
+					    <label for="inputDate" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Fecha</label>
+					    <div class="col-sm-3">
+					      <input type="text" class="form-control" id="inputDate" placeholder="Día 0" value="Día 1">
+					    </div>
+					  </div>
+					</form>
+
+					 <form>
+					  <div class="form-group row justify-content-center">
+					    <label for="inputStarterAmount" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Cantidad inicial</label>
+					    <div class="col-sm-3">
+					      <input type="number" min="0.00000000" step="0.00000001" class="form-control" id="inputStarterAmount" placeholder="0.00000000" value="0.00001000">
+					    </div>
+					  </div>
+					</form>
+
+					 <form>
+					  <div class="form-group row justify-content-center">
+					    <label for="inputIndex" class="col-sm-4 col-md-3 col-lg-2 col-form-label">Índice</label>
+					    <div class="col-sm-3">
+					      <input type="number" min="1" step="0.1" class="form-control" id="inputIndex" placeholder="1.2" value="1.2">
+					    </div>
+					  </div>
+					</form>
+
+					<div class="row justify-content-center text-center">
+						<div class="col-4">
+							<button type="submit" class="btn btn-primary py-2 px-5" id="addNew">Añadir</button>
+						</div>
+					</div>
+
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<div class="table-responsive">
+				<table class="table">
+				    <thead>
+					    <tr class="bg-primary text-white">
+						    <th scope="col">Fecha</th>
+						    <th scope="col">Cantidad inicial</th>
+						    <th scope="col">Ganancias máximas</th>
+						    <th scope="col">Pérdidas máximas</th>
+						    <th scope="col">Índice</th>
+					    </tr>
+					  </thead>
+					  <tbody id="tbody">
+					  	<!-- Tabla de prueba
+					    <tr>
+					    	<td>Día 1</td>
+						    <td>0.00000100</td>
+						    <td>0.00000150</td>
+						    <td>0.00000050</td>
+						    <td>1.5</td>
+					    </tr>
+					    Tabla de prueba -->
+					  </tbody>
 				</table>
 			</div>
 
-			<div class="row justify-content-center text-center my-3">
-				<div class="col-4 col-md-3 col-lg-2 py-2 text-white dark-button-style"><b>Cantidad inicial</b></div>
-				<div class="col-4 col-md-3 col-lg-2 py-2 text-white dark-button-style"><b>Índice</b></div>
-			</div>
-			<div class="row justify-content-center text-center">
-				<div class="col-4 col-md-3 col-lg-2 py-2 border-bottom-light"><input type="number" placeholder="0.00005000" min="0" class="no-input-style text-center" id="startingAmount"></div>
-				<div class="col-4 col-md-3 col-lg-2 py-2 border-bottom-light"><input type="number" placeholder="1.3" min="1" class="no-input-style text-center" id="startingIndex"></div>
+			<div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">Entrar</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        
+						
+					<form>
+					  <div class="form-group row justify-content-center">
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="inputUser1" placeholder="Usuario">
+					    </div>
+					  </div>
+					  <div class="form-group row justify-content-center">
+					    <div class="col-sm-10">
+					      <input type="password" class="form-control" id="inputPassword1" placeholder="Constraseña">
+					    </div>
+					  </div>
+					  <div class="form-group row justify-content-center mt-4 mb-1">
+					    <div class="col-sm-10 text-center">
+					      <button type="submit" class="btn btn-primary">Entrar</button>
+					    </div>
+					  </div>
+					  <div class="form-group row justify-content-center ">
+					  	<div class="col-sm-10 text-center">
+					      <a href="#" id="registerDirection">Registrarse</a>
+					  	</div>
+					  </div>
+					</form>
+
+
+			      </div>
+			    </div>
+			  </div>
 			</div>
 
-			<div class="row justify-content-center my-3">
-				<div class="col-4 col-md-3 col-lg-2 py-2 text-center text-white dark-button-press-style cursor-hand" onclick="start();">
-					<b>Enviar</b>
-				</div>
+			<div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title">Registrarse</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        
+						
+					<form>
+					  <div class="form-group row justify-content-center">
+					    <div class="col-sm-10">
+					      <input type="text" class="form-control" id="inputUser2" placeholder="Usuario">
+					    </div>
+					  </div>
+					  <div class="form-group row justify-content-center">
+					    <div class="col-sm-10">
+					      <input type="password" class="form-control" id="inputPassword2" placeholder="Contraseña">
+					    </div>
+					  </div>
+					  <div class="form-group row justify-content-center mt-4 mb-1">
+					    <div class="col-sm-10 text-center">
+					      <button type="submit" class="btn btn-primary">Enviar</button>
+					    </div>
+					  </div>
+					</form>
+
+
+			      </div>
+			    </div>
+			  </div>
 			</div>
-		</div>
 		
+		</div>
 
 
 
