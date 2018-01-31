@@ -794,4 +794,9 @@ $(document).ready(function(){
 		switchAuto();
 		returnAutoRollSTR2();
 	});
+
+	$("#changeBTC").click(function(){
+		var getVal = $("#newBTCValue").val();
+		$("#btcCounter").text(parseFloat(getVal).toFixed(8));
+	});
 });
